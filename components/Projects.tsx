@@ -6,15 +6,29 @@ import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Define the Project interface based on config.ts structure
+interface Project {
+  title: string;
+  year: string;
+  description: {
+    en: string;
+    ru: string;
+  };
+  longDescription?: {
+    en: string;
+    ru: string;
+  };
+  tech: string[];
+  image: string;
+  gallery?: string[];
+  github?: string;
+  live?: string;
+}
+
 export default function Projects() {
   const [lang, setLang] = useState<"en" | "ru">("en");
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Reset image index when project changes
-  useEffect(() => {
-    setCurrentImageIndex(0);
-  }, [selectedProject]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -27,6 +41,11 @@ export default function Projects() {
       document.body.style.overflow = "unset";
     };
   }, [selectedProject]);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setCurrentImageIndex(0);
+  };
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -57,24 +76,24 @@ export default function Projects() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12  lg:gap-16">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {projects.map((project, index) => (
             <motion.div
               layoutId={`project-${project.title}`}
               key={index}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => handleProjectClick(project)}
               className="glass-card p-[5%] group cursor-pointer hover:border-blue-500/50 transition-colors"
             >
               {/* Project Image */}
               <motion.div 
                 layoutId={`image-${project.title}`}
-                className="relative  h-48 bg-gray-800 rounded-lg overflow-hidden mb-4"
+                className="relative h-48 bg-gray-800 rounded-lg overflow-hidden mb-4"
               >
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover  transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
               </motion.div>
@@ -83,7 +102,7 @@ export default function Projects() {
               <div className="flex justify-between items-start mb-3">
                 <motion.h3 
                   layoutId={`title-${project.title}`}
-                  className="text-2xl  font-bold text-white group-hover:text-amber-400 transition-colors"
+                  className="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors"
                 >
                   {project.title}
                 </motion.h3>
@@ -248,8 +267,8 @@ export default function Projects() {
                         className="text-gray-300 leading-relaxed whitespace-pre-wrap"
                       >
                         {/* Prefer longDescription if available, fallback to description */}
-                        {(selectedProject as any).longDescription 
-                          ? (selectedProject as any).longDescription[lang] 
+                        {selectedProject.longDescription 
+                          ? selectedProject.longDescription[lang] 
                           : selectedProject.description[lang]}
                       </motion.div>
                     </div>

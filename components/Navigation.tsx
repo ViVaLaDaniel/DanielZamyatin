@@ -8,7 +8,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [lang, setLang] = useState<"en" | "ru">("en");
+  const [lang] = useState<"en" | "ru">("en");
 
   useEffect(() => {
     const handleScroll = () => {

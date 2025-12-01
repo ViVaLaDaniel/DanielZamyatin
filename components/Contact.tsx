@@ -1,31 +1,41 @@
 "use client";
 
-import { useState } from "react";
 import { siteConfig } from "@/lib/config";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [state, handleSubmit] = useForm("mjknrylk");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    
-    setTimeout(() => {
-      setStatus("sent");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  if (state.succeeded) {
+    return (
+      <section id="contact" className="py-20">
+        <div className="container">
+          <div className="flex flex-col items-center justify-center text-center p-8 glass-card max-w-2xl mx-auto">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6 text-green-500"
+            >
+              <CheckCircle size={40} />
+            </motion.div>
+            <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
+            <p className="text-gray-300 text-lg mb-8">
+              Thank you for reaching out. I will get back to you as soon as possible!
+            </p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="btn btn-outline"
+            >
+              Send Another Message
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="py-20">
@@ -34,7 +44,7 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           <div className="space-y-6">
-          <div className="glass-card p-[5%]">
+            <div className="glass-card p-[5%]">
               <h3 className="text-2xl font-semibold mb-6 text-blue-400">Contact Information</h3>
               
               <div className="space-y-4">
@@ -88,23 +98,46 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" />
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required 
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" 
+                />
+                <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm mt-1" />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" />
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required 
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" 
+                />
+                <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white resize-none"></textarea>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  required 
+                  rows={5} 
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white resize-none"
+                ></textarea>
+                <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
               </div>
 
-              <button type="submit" disabled={status === "sending"} className="btn btn-gold w-full">
-                {status === "idle" && <><Send size={20} /> Send Message</>}
-                {status === "sending" && "Sending..."}
-                {status === "sent" && "✓ Sent!"}
+              <button type="submit" disabled={state.submitting} className="btn btn-gold w-full disabled:opacity-50 disabled:cursor-not-allowed">
+                {state.submitting ? (
+                  "Sending..."
+                ) : (
+                  <><Send size={20} /> Send Message</>
+                )}
               </button>
             </form>
           </div>
