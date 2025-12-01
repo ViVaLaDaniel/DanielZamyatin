@@ -118,16 +118,38 @@ export const experience = [
 
 export const projects = [
   {
+    title: "StructuralDiet",
+    description: {
+      en: "Premium healthy food delivery service app. Built with Next.js 16, React 19, and Tailwind CSS v4. Features i18n, Framer Motion animations, and GSAP scroll effects.",
+      ru: "Премиум сервис доставки здорового питания. Разработан на Next.js 16, React 19 и Tailwind CSS v4. Включает i18n, анимации Framer Motion и скролл-эффекты GSAP.",
+    },
+    longDescription: {
+      en: "StructuralDiet is a high-end food delivery platform designed for health-conscious individuals. The application features a sophisticated ordering system, personalized meal plans, and a seamless user experience. \n\nKey features include:\n- **Internationalization (i18n):** Full support for multiple languages to serve a diverse customer base.\n- **Advanced Animations:** Utilizing Framer Motion and GSAP for smooth, engaging scroll effects and transitions that elevate the brand feel.\n- **Modern Tech Stack:** Built on the bleeding edge with Next.js 16 and React 19, ensuring top-tier performance and SEO.\n- **Responsive Design:** A mobile-first approach using Tailwind CSS v4 for a consistent experience across all devices.",
+      ru: "StructuralDiet — это премиальная платформа доставки еды, разработанная для людей, заботящихся о здоровье. Приложение отличается сложной системой заказов, персонализированными планами питания и безупречным пользовательским интерфейсом.\n\nКлючевые особенности:\n- **Интернационализация (i18n):** Полная поддержка нескольких языков.\n- **Продвинутые анимации:** Использование Framer Motion и GSAP для плавных эффектов прокрутки и переходов.\n- **Современный стек:** Построено на Next.js 16 и React 19, что гарантирует высокую производительность.\n- **Адаптивный дизайн:** Mobile-first подход с использованием Tailwind CSS v4."
+    },
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion", "GSAP", "i18n"],
+    image: "/projects/structural-diet.png",
+    gallery: ["/projects/structural-diet.png"],
+    github: "https://github.com/ViVaLaDaniel/StucturalDiet",
+    live: "https://stuctural-diet.vercel.app/",
+    year: "2024",
+  },
+  {
     title: "AI Dashboard",
     year: "2025",
     description: {
       en: "Next.js application with Gemini and OpenAI integration. Features chat history, context retention, and code/content generation capabilities.",
       ru: "Next.js приложение с интеграцией Gemini и OpenAI. Включает историю чата, сохранение контекста и возможности генерации кода/контента."
     },
+    longDescription: {
+      en: "A powerful AI Dashboard that centralizes interactions with top-tier LLMs like Gemini and OpenAI. This tool is designed to boost productivity by providing a unified interface for various AI tasks.\n\nCapabilities:\n- **Multi-Model Support:** Switch seamlessly between Gemini and OpenAI models.\n- **Context Awareness:** The chat system retains context for more natural and effective conversations.\n- **Code & Content Generation:** Specialized modes for generating clean code snippets and high-quality written content.\n- **Secure & Scalable:** Built with best practices for API security and state management.",
+      ru: "Мощная AI-панель, объединяющая взаимодействие с топовыми LLM, такими как Gemini и OpenAI. Этот инструмент создан для повышения продуктивности.\n\nВозможности:\n- **Мульти-модельная поддержка:** Легкое переключение между моделями Gemini и OpenAI.\n- **Сохранение контекста:** Чат-система помнит контекст для более естественного общения.\n- **Генерация кода и контента:** Специализированные режимы для создания чистого кода и качественных текстов."
+    },
     tech: ["Next.js", "TypeScript", "Gemini API", "OpenAI API", "Tailwind CSS"],
     github: "https://github.com/ViVaLaDaniel/ai-dashboard",
     live: "https://ai-dashboard-blih.vercel.app/",
-    image: "/projects/ai-dashboard.png"
+    image: "/projects/ai-dashboard.png",
+    gallery: ["/projects/ai-dashboard.png"]
   },
   {
     title: "Vantage Shopify Theme",
@@ -136,10 +158,15 @@ export const projects = [
       en: "Modular Shopify theme built with Liquid and Tailwind CSS. Emphasizes speed, flexible sections, and clean structure for easy customization.",
       ru: "Модульная тема Shopify на Liquid и Tailwind CSS. Акцент на скорость, гибкие секции и чистую структуру для лёгкой кастомизации."
     },
+    longDescription: {
+      en: "Vantage is a custom-built Shopify theme focused on performance and flexibility. Unlike standard themes, Vantage leverages Tailwind CSS for rapid styling and a component-based Liquid architecture.\n\nHighlights:\n- **Speed Optimization:** Minimized bloat and optimized assets for lightning-fast load times.\n- **Online Store 2.0:** Full support for sections everywhere and JSON templates.\n- **Developer Friendly:** Clean code structure making it easy for other developers to extend and maintain.",
+      ru: "Vantage — это кастомная тема Shopify, ориентированная на производительность и гибкость. В отличие от стандартных тем, Vantage использует Tailwind CSS для быстрой стилизации.\n\nОсобенности:\n- **Оптимизация скорости:** Минимизация лишнего кода и оптимизация ресурсов.\n- **Online Store 2.0:** Полная поддержка секций и JSON шаблонов.\n- **Удобство для разработчиков:** Чистая структура кода, облегчающая расширение и поддержку."
+    },
     tech: ["Liquid", "Tailwind CSS", "JavaScript", "Shopify OS 2.0"],
     github: "https://github.com/ViVaLaDaniel/vantage-theme",
     live: "https://vantage-demo.myshopify.com",
-    image: "/projects/vantage-theme.png"
+    image: "/projects/vantage-theme.png",
+    gallery: ["/projects/vantage-theme.png"]
   },
   {
     title: "System Status Monitor",
@@ -148,10 +175,15 @@ export const projects = [
       en: "Real-time monitoring tool built with Node.js and WebSockets. Tracks uptime, latency, and system health metrics.",
       ru: "Инструмент мониторинга в реальном времени на Node.js и WebSockets. Отслеживает uptime, задержки и метрики здоровья системы."
     },
+    longDescription: {
+      en: "A robust real-time monitoring solution for tracking the health of distributed systems. Using WebSockets, it provides instant updates on server status, latency, and uptime.\n\nFeatures:\n- **Real-Time Updates:** Zero-latency dashboard updates using WebSockets.\n- **Visual Analytics:** Interactive charts powered by Chart.js to visualize performance trends.\n- **Alerting System:** Automated notifications when metrics exceed defined thresholds.",
+      ru: "Надежное решение для мониторинга здоровья распределенных систем в реальном времени. Используя WebSockets, оно обеспечивает мгновенные обновления статуса серверов.\n\nФункции:\n- **Обновления в реальном времени:** Нулевая задержка благодаря WebSockets.\n- **Визуальная аналитика:** Интерактивные графики на Chart.js.\n- **Система оповещений:** Автоматические уведомления при превышении пороговых значений."
+    },
     tech: ["Node.js", "WebSockets", "Express", "Chart.js"],
     github: "https://github.com/ViVaLaDaniel/status-monitor",
     live: "",
-    image: "/projects/status-monitor.png"
+    image: "/projects/status-monitor.png",
+    gallery: ["/projects/status-monitor.png"]
   },
   {
     title: "DigitalOcean Docker Stack",
@@ -160,10 +192,15 @@ export const projects = [
       en: "Self-hosted services infrastructure with Docker, Nginx reverse proxy, SSL automation, and GitHub Actions deployment scripts.",
       ru: "Инфраструктура самостоятельно размещённых сервисов с Docker, Nginx reverse proxy, автоматизацией SSL и скриптами развёртывания через GitHub Actions."
     },
+    longDescription: {
+      en: "A complete DevOps solution for self-hosting applications. This stack provides a secure, automated environment for deploying and managing web services.\n\nComponents:\n- **Docker Containerization:** Isolated environments for consistent application behavior.\n- **Nginx Reverse Proxy:** Efficient traffic handling and load balancing.\n- **Automated SSL:** Let's Encrypt integration for auto-renewing security certificates.\n- **CI/CD Pipelines:** GitHub Actions workflows for automated testing and deployment.",
+      ru: "Полное DevOps решение для селф-хостинга приложений. Этот стек обеспечивает безопасную и автоматизированную среду для развертывания веб-сервисов.\n\nКомпоненты:\n- **Docker контейнеризация:** Изолированные среды.\n- **Nginx Reverse Proxy:** Эффективная обработка трафика.\n- **Автоматический SSL:** Интеграция с Let's Encrypt.\n- **CI/CD пайплайны:** Workflows GitHub Actions для автоматического тестирования и деплоя."
+    },
     tech: ["Docker", "Nginx", "Linux", "GitHub Actions", "DigitalOcean"],
     github: "https://github.com/ViVaLaDaniel/docker-stack",
     live: "",
-    image: "/projects/docker-stack.png"
+    image: "/projects/docker-stack.png",
+    gallery: ["/projects/docker-stack.png"]
   }
 ];
 
