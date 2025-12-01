@@ -19,10 +19,10 @@ export default function About() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           {/* Professional Summary */}
-          <div className="glass-card p-8 md:p-12">
-            <h3 className="text-2xl font-semibold mb-4 text-blue-400">Professional Summary</h3>
+          <div className="glass-card p-[5%]">
+            <h3 className="text-2xl font-semibold mb-4   text-blue-400">Professional Summary</h3>
             <p className="text-gray-300 leading-relaxed">
               {professionalSummary[lang]}
             </p>
@@ -42,7 +42,7 @@ export default function About() {
           </div>
 
           {/* Skills */}
-          <div className="glass-card p-8 md:p-12">
+          <div className="glass-card p-[5%]">
             <h3 className="text-2xl font-semibold mb-6 text-blue-400">Technical Skills</h3>
             <div className="space-y-6">
               {skills.map((skill) => (

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -87,6 +87,10 @@ export default function Hero() {
             <a href={`tel:${siteConfig.phone}`} className="btn btn-outline">
               <Phone size={20} />
               {siteConfig.phone}
+            </a>
+            <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+              <MessageCircle size={20} />
+              WhatsApp
             </a>
             <a href="#contact" className="btn btn-gold">
               Hire Me

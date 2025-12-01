@@ -6,7 +6,7 @@ export default function TechStack() {
       <div className="container">
         <h2 className="text-5xl font-bold gradient-text mb-12">Tech Stack</h2>
 
-        <div className="glass-card p-6 md:p-12">
+        <div className="glass-card p-[5%]">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>

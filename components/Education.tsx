@@ -17,7 +17,7 @@ export default function Education() {
           </button>
         </div>
 
-        <div className="glass-card p-8 md:p-12 max-w-3xl mx-auto">
+        <div className="glass-card p-[5%] max-w-3xl mx-auto">
           <div className="flex items-start gap-4">
             <div className="p-4 bg-amber-500/20 rounded-lg">
               <GraduationCap className="text-amber-400" size={32} />

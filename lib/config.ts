@@ -7,7 +7,8 @@ export const siteConfig = {
   email: "zamyatin.daniel@gmail.com",
   github: "https://github.com/ViVaLaDaniel",
   githubUsername: "ViVaLaDaniel",
-  linkedin: "https://www.linkedin.com/in/daniel-zamyatin",
+  linkedin: "https://linkedin.com/in/zamyatindaniel",
+  whatsapp: "https://wa.me/34642370671",
   headline: "Independent Full-Stack Engineer | Next.js, Shopify, AI (Gemini/OpenAI), n8n Automation, Docker/DigitalOcean",
   objective: "Seeking first official full-time role",
 };

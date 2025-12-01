@@ -24,13 +24,13 @@ export default function Experience() {
           {/* Timeline line */}
           <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-amber-500 hidden md:block"></div>
 
-          <div className="space-y-12">
+          <div className="space-y-16 md:space-y-24">
             {experience.map((job, index) => (
               <div key={index} className="relative md:ml-20">
                 {/* Timeline dot */}
                 <div className="absolute -left-12 top-6 w-4 h-4 bg-amber-500 rounded-full border-4 border-gray-900 hidden md:block glow-gold"></div>
 
-                <div className="glass-card p-8 md:p-12 hover:border-amber-500/50 transition-all">
+                <div className="glass-card p-[5%] hover:border-amber-500/50 transition-all">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="p-3 bg-blue-500/20 rounded-lg">
                       <Briefcase className="text-blue-400" size={24} />

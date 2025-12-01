@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { siteConfig } from "@/lib/config";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,9 +32,9 @@ export default function Contact() {
       <div className="container">
         <h2 className="text-5xl font-bold gradient-text mb-12">Get In Touch</h2>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           <div className="space-y-6">
-          <div className="glass-card p-8 md:p-12">
+          <div className="glass-card p-[5%]">
               <h3 className="text-2xl font-semibold mb-6 text-blue-400">Contact Information</h3>
               
               <div className="space-y-4">
@@ -52,6 +52,13 @@ export default function Contact() {
                   <span>{siteConfig.phone}</span>
                 </a>
 
+                <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-300 hover:text-amber-400 transition-colors group">
+                  <div className="p-3 bg-blue-500/20 rounded-lg group-hover:bg-amber-500/20 transition-colors">
+                    <MessageCircle size={20} />
+                  </div>
+                  <span>WhatsApp</span>
+                </a>
+
                 <div className="flex items-center gap-4 text-gray-300">
                   <div className="p-3 bg-blue-500/20 rounded-lg">
                     <MapPin size={20} />
@@ -61,11 +68,17 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="glass-card p-4 h-64 flex items-center justify-center">
-              <div className="text-center text-gray-400">
-                <MapPin size={48} className="mx-auto mb-2 opacity-50" />
-                <p>Marbella, Spain</p>
-              </div>
+            <div className="glass-card h-80 overflow-hidden relative p-0">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51249.65363884876!2d-4.939886714656886!3d36.51006507663243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72d80c3c780775%3A0x40463fd8ca1c660!2sMarbella%2C%20M%C3%A1laga%2C%20Spain!5e0!3m2!1sen!2sus!4v1701388000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0"
+              ></iframe>
             </div>
           </div>
 

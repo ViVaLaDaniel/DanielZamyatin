@@ -21,9 +21,9 @@ export default function Projects() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {projects.map((project, index) => (
-            <div key={index} className="glass-card p-6 md:p-10 group">
+            <div key={index} className="glass-card p-[5%] group">
               {/* Project Image */}
               <div className="relative h-48 bg-gray-800 rounded-lg overflow-hidden mb-4">
                 <Image
