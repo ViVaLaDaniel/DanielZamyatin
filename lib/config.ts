@@ -8,7 +8,7 @@ export const siteConfig = {
   github: "https://github.com/ViVaLaDaniel",
   githubUsername: "ViVaLaDaniel",
   linkedin: "https://linkedin.com/in/zamyatindaniel",
-  whatsapp: "https://wa.me/34642370671",
+  whatsapp: "https://api.whatsapp.com/send?phone=34642370671",
   headline: "Independent Full-Stack Engineer | Next.js, Shopify, AI (Gemini/OpenAI), n8n Automation, Docker/DigitalOcean",
   objective: "Seeking first official full-time role",
 };
