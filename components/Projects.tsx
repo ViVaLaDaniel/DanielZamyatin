@@ -1,22 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { projects } from "@/lib/config";
+import { projects, translations, navLinks } from "@/lib/config";
 import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 // Define the Project interface based on config.ts structure
 interface Project {
   title: string;
-  year: string;
+  year?: string;
   description: {
     en: string;
-    ru: string;
+    de: string;
+    es: string;
+    uk: string;
   };
   longDescription?: {
     en: string;
-    ru: string;
+    de: string;
+    es: string;
+    uk: string;
   };
   tech: string[];
   image: string;
@@ -26,9 +31,13 @@ interface Project {
 }
 
 export default function Projects() {
-  const [lang, setLang] = useState<"en" | "ru">("en");
+  const { language } = useLanguageStore();
+  const t = translations[language];
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Find the 'Projects' link name for the title
+  const projectsTitle = navLinks.find(link => link.href === "#projects")?.name[language] || "Projects";
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -42,7 +51,7 @@ export default function Projects() {
     };
   }, [selectedProject]);
 
-  const handleProjectClick = (project: Project) => {
+  const handleProjectClick = (project: any) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
   };
@@ -67,13 +76,7 @@ export default function Projects() {
     <section id="projects" className="py-20">
       <div className="container">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-5xl font-bold gradient-text">Projects</h2>
-          <button
-            onClick={() => setLang(lang === "en" ? "ru" : "en")}
-            className="btn btn-outline text-sm"
-          >
-            {lang === "en" ? "🇷🇺 RU" : "🇬🇧 EN"}
-          </button>
+          <h2 className="text-5xl font-bold gradient-text">{projectsTitle}</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
@@ -113,7 +116,7 @@ export default function Projects() {
                 layoutId={`desc-${project.title}`}
                 className="text-gray-300 mb-4 leading-relaxed line-clamp-3"
               >
-                {project.description[lang]}
+                {project.description[language]}
               </motion.p>
 
               {/* Tech Stack */}
@@ -239,7 +242,7 @@ export default function Projects() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-3 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors border border-white/10"
-                            title="View Code"
+                            title={t.viewCode}
                           >
                             <Github size={20} />
                           </a>
@@ -250,7 +253,7 @@ export default function Projects() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-3 bg-blue-600 hover:bg-blue-500 rounded-full text-white transition-colors shadow-lg shadow-blue-500/20"
-                            title="Live Demo"
+                            title={t.liveDemo}
                           >
                             <ExternalLink size={20} />
                           </a>
@@ -260,7 +263,7 @@ export default function Projects() {
 
                     <div className="mb-8">
                       <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-3 font-semibold">
-                        {lang === "en" ? "About the Project" : "О проекте"}
+                        {t.aboutProject}
                       </h4>
                       <motion.div 
                         layoutId={`desc-${selectedProject.title}`}
@@ -268,14 +271,14 @@ export default function Projects() {
                       >
                         {/* Prefer longDescription if available, fallback to description */}
                         {selectedProject.longDescription 
-                          ? selectedProject.longDescription[lang] 
-                          : selectedProject.description[lang]}
+                          ? selectedProject.longDescription[language] 
+                          : selectedProject.description[language]}
                       </motion.div>
                     </div>
 
                     <div className="mt-auto">
                       <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-3 font-semibold">
-                        {lang === "en" ? "Technologies" : "Технологии"}
+                        {t.technologies}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.tech.map((tech, i) => (

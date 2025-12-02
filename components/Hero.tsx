@@ -1,11 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, professionalSummary, translations } from "@/lib/config";
 import { Github, Linkedin, Mail, Phone, MessageCircle, FileText } from "lucide-react";
+import { motion } from "framer-motion";
+import { useLanguageStore } from "@/store/useLanguageStore";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const { language } = useLanguageStore();
+  const t = translations[language];
+  
   const [text, setText] = useState("");
   const fullText = siteConfig.headline;
   const [index, setIndex] = useState(0);
@@ -59,6 +64,10 @@ export default function Hero() {
             <p className="text-lg">{siteConfig.location}</p>
             <p className="text-sm italic">{siteConfig.objective}</p>
           </div>
+          
+          <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed">
+            {professionalSummary[language]}
+          </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 justify-center mt-8">
@@ -82,7 +91,7 @@ export default function Hero() {
             </a>
             <a href={`mailto:${siteConfig.email}`} className="btn btn-outline">
               <Mail size={20} />
-              Email
+              {t.email}
             </a>
             <a href={`tel:${siteConfig.phone}`} className="btn btn-outline">
               <Phone size={20} />
@@ -98,10 +107,10 @@ export default function Hero() {
               className="btn btn-outline border-blue-400 text-blue-400 hover:bg-blue-400/10"
             >
               <FileText size={20} />
-              Download CV
+              {t.downloadCv}
             </a>
             <a href="#contact" className="btn btn-gold">
-              Hire Me
+              {t.hireMe}
             </a>
           </div>
         </div>

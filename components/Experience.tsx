@@ -1,23 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { experience } from "@/lib/config";
+import { experience, navLinks } from "@/lib/config";
 import { Briefcase } from "lucide-react";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 export default function Experience() {
-  const [lang, setLang] = useState<"en" | "ru">("en");
+  const { language } = useLanguageStore();
+
+  // Find the 'Experience' link name for the title
+  const experienceTitle = navLinks.find(link => link.href === "#experience")?.name[language] || "Experience";
 
   return (
     <section id="experience" className="py-20 bg-gradient-to-b from-transparent to-blue-950/10">
       <div className="container">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-5xl font-bold gradient-text">Experience</h2>
-          <button
-            onClick={() => setLang(lang === "en" ? "ru" : "en")}
-            className="btn btn-outline text-sm"
-          >
-            {lang === "en" ? "🇷🇺 RU" : "🇬🇧 EN"}
-          </button>
+          <h2 className="text-5xl font-bold gradient-text">{experienceTitle}</h2>
         </div>
 
         <div className="relative">
@@ -49,7 +46,7 @@ export default function Experience() {
                     {job.achievements.map((achievement, i) => (
                       <li key={i} className="flex gap-3 text-gray-300">
                         <span className="text-amber-500 mt-1">▹</span>
-                        <span>{achievement[lang]}</span>
+                        <span>{achievement[language]}</span>
                       </li>
                     ))}
                   </ul>
